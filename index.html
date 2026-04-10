@@ -9,17 +9,50 @@
 <body>
     <header>
         <div class="container">
-            <h1>[Your App Name]</h1>
-            <p class="subtitle">[One-sentence purpose]</p>
+            <h1>Minerva Fit Checker</h1>
+            <p class="subtitle">Find out how well Minerva fits you</p>
         </div>
     </header>
 
     <main class="container">
         <!-- Students will build their app here -->
         <section id="app-placeholder">
-            <h2>Ready to start?</h2>
-            <p>Tell Gemini what your first milestone is, or ask: "What should we build first for [App Name]?"</p>
-        </section>
+
+  <h2>Minerva Fit Checker</h2>
+
+  <div class="card">
+
+    <label>Do you enjoy speaking up and sharing your ideas in group discussions?</label><br>
+    <select id="discussion">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <br><br>
+
+    <label>Do you usually stay on top of reading and writing assignments without needing reminders?</label><br>
+    <select id="reading">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <br><br>
+
+    <label>Do you enjoy changing environments and adapting to new places?</label><br>
+    <select id="travel">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="checkFit()">Check Fit</button>
+
+    <pre id="result"></pre>
+
+  </div>
+
+</section>
     </main>
 
     <footer>
