@@ -9,8 +9,8 @@
 <body>
     <header>
         <div class="container">
-            <h1>Minerva Fit Checker</h1>
-            <p class="subtitle">Find out how well Minerva fits you</p>
+            <h1>Discover Your Minerva Academic Path</h1>
+            <p class="subtitle">Explore Minerva’s majors, experience real class scenarios, and see where you thrive.</p>
         </div>
     </header>
 
@@ -18,39 +18,60 @@
         <!-- Students will build their app here -->
         <section id="app-placeholder">
 
-  <h2>Minerva Fit Checker</h2>
+  <h2>Start Your Exploration</h2>
+<p>
+This interactive experience simulates how Minerva students learn — through discussion,
+analysis, and real-world problem solving.
+</p>
 
   <div class="card">
 
-    <label>Do you enjoy speaking up and sharing your ideas in group discussions?</label><br>
-    <select id="discussion">
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+  <p>
+    Answer based on what you would actually do — not what sounds best.
+    There are no right or wrong answers.
+  </p>
 
-    <br><br>
+  <label>
+    In a small seminar, students are debating a complex global issue.
+    How do you typically respond?
+  </label><br>
 
-    <label>Do you usually stay on top of reading and writing assignments without needing reminders?</label><br>
-    <select id="reading">
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+  <select id="discussion">
+    <option value="yes">I actively contribute and build on others’ ideas</option>
+    <option value="no">I prefer listening and reflecting before speaking</option>
+  </select>
 
-    <br><br>
+  <br><br>
 
-    <label>Do you enjoy changing environments and adapting to new places?</label><br>
-    <select id="travel">
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+  <label>
+    You’re given multiple readings and an open-ended writing task with minimal instructions.
+    What’s your approach?
+  </label><br>
 
-    <br><br>
+  <select id="reading">
+    <option value="yes">I organize my time and complete everything independently</option>
+    <option value="no">I struggle without clear structure or reminders</option>
+  </select>
 
-    <button onclick="checkFit()">Check Fit</button>
+  <br><br>
 
-    <pre id="result"></pre>
+  <label>
+    Each year, you move to a new country with a new culture and environment.
+    How do you feel about this?
+  </label><br>
 
-  </div>
+  <select id="travel">
+    <option value="yes">Excited — I enjoy adapting and exploring new places</option>
+    <option value="no">Overwhelmed — I prefer stability and routine</option>
+  </select>
+
+  <br><br>
+
+  <button onclick="checkFit()">See My Results</button>
+
+  <pre id="result"></pre>
+
+</div>
 
 </section>
     </main>
