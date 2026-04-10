@@ -29,42 +29,72 @@ function init() {
 // Event handlers — add yours below
 // ============================================================
 function checkFit() {
-  let score = 0;
-  let total = 3;
-  let challenges = [];
+let discussion = document.getElementById("discussion").value;
+let reading = document.getElementById("reading").value;
+let travel = document.getElementById("travel").value;
 
-  if (document.getElementById("discussion").value === "yes") {
-    score++;
-  } else {
-    challenges.push("You may struggle with discussion-heavy classes.");
-  }
+// SCORES
+let scores = {
+  collaboration: 0,
+  selfDirection: 0,
+  globalMindset: 0
+};
 
-  if (document.getElementById("reading").value === "yes") {
-    score++;
-  } else {
-    challenges.push("Heavy reading and writing could be challenging.");
-  }
+// LOGIC
+scores.collaboration = (discussion === "yes") ? 5 : 2;
+scores.selfDirection = (reading === "yes") ? 5 : 2;
+scores.globalMindset = (travel === "yes") ? 5 : 2;
 
-  if (document.getElementById("travel").value === "yes") {
-    score++;
-  } else {
-    challenges.push("Frequent travel and moving cities may be difficult.");
-  }
+// BEST MATCH
+let bestMajor = "";
 
-  let percentage = Math.round((score / total) * 100);
-
-  let resultText = `Your Minerva Fit Score: ${percentage}%`;
-  if (percentage < 70) {
-    resultText += "\n\nPotential Challenges:\n";
-    challenges.forEach(c => {
-      resultText += "• " + c + "\n";
-    });
-  } else {
-    resultText += "\n\nYou seem well-aligned with Minerva!";
-  }
-
-  document.getElementById("result").innerText = resultText;
+if (scores.collaboration >= 4 && scores.globalMindset >= 4) {
+  bestMajor = "🌍 Social Sciences (SS)";
 }
+else if (scores.selfDirection >= 4) {
+  bestMajor = "💻 Computer Science (CS)";
+}
+else {
+  bestMajor = "🌐 Interdisciplinary / Global Studies";
+}
+
+// DISPLAY TEXT
+document.getElementById("bestMatch").innerText =
+  "Best Academic Match: " + bestMajor;
+
+// CHART
+const ctx = document.getElementById('resultChart').getContext('2d');
+
+if (window.myChart) {
+  window.myChart.destroy();
+}
+
+window.myChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ["Collaboration", "Self-Direction", "Global Mindset"],
+    datasets: [{
+      label: "Your Profile",
+      data: [
+        scores.collaboration,
+        scores.selfDirection,
+        scores.globalMindset
+      ],
+      backgroundColor: "rgba(255, 159, 64, 0.2)",
+      borderColor: "rgba(255, 159, 64, 1)",
+      pointBackgroundColor: ["#4CAF50", "#2196F3", "#9C27B0"],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    scales: {
+      r: {
+        min: 0,
+        max: 5
+      }
+    }
+  }
+});
 // ============================================================
 // Rendering — add render functions below
 // ============================================================
