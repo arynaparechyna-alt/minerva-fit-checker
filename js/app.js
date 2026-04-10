@@ -28,7 +28,43 @@ function init() {
 // ============================================================
 // Event handlers — add yours below
 // ============================================================
+function checkFit() {
+  let score = 0;
+  let total = 3;
+  let challenges = [];
 
+  if (document.getElementById("discussion").value === "yes") {
+    score++;
+  } else {
+    challenges.push("You may struggle with discussion-heavy classes.");
+  }
+
+  if (document.getElementById("reading").value === "yes") {
+    score++;
+  } else {
+    challenges.push("Heavy reading and writing could be challenging.");
+  }
+
+  if (document.getElementById("travel").value === "yes") {
+    score++;
+  } else {
+    challenges.push("Frequent travel and moving cities may be difficult.");
+  }
+
+  let percentage = Math.round((score / total) * 100);
+
+  let resultText = `Your Minerva Fit Score: ${percentage}%`;
+  if (percentage < 70) {
+    resultText += "\n\nPotential Challenges:\n";
+    challenges.forEach(c => {
+      resultText += "• " + c + "\n";
+    });
+  } else {
+    resultText += "\n\nYou seem well-aligned with Minerva!";
+  }
+
+  document.getElementById("result").innerText = resultText;
+}
 // ============================================================
 // Rendering — add render functions below
 // ============================================================
