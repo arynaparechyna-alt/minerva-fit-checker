@@ -122,12 +122,8 @@ function nextQuestion() {
 }
 
 function showResults() {
-  document.getElementById("quiz").innerHTML = `
-    <div class="card">
-      <h2>You're a strong fit for Minerva 🚀</h2>
-      <p>Next step: we'll calculate your profile + chart.</p>
-    </div>
-  `;
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "<div class='card'><h2>You're a strong fit for Minerva 🚀</h2><p>Next step: we'll calculate your profile + chart.</p></div>";
 }
 // ============================================================
 // Rendering — add render functions below
