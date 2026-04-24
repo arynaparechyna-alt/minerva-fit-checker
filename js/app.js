@@ -140,4 +140,4 @@ function showResults() {
 // ============================================================
 // Boot
 // ============================================================
-
+document.addEventListener('DOMContentLoaded', init);
