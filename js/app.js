@@ -67,10 +67,8 @@ const questions = [
   }
 ];
 
- function startQuiz() {
-  const landing = document.querySelector(".programs");
-  if (landing) landing.style.display = "none";
-
+function startQuiz() {
+  document.getElementById("landing").style.display = "none";
   document.getElementById("quiz").style.display = "block";
   loadQuestion();
 }
