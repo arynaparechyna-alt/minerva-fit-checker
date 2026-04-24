@@ -14,27 +14,31 @@
         </div>
     </header>
 
-    <main class="container">
+    <main>
         <!-- Students will build their app here -->
         <section id="landing">
 
   <div class="hero">
+  <div class="container">
     <h2>Do More in <em>Four Years</em></h2>
     <p>
       Becoming a Minerva student means stepping into a global, rigorous,
       discussion-based learning environment.
     </p>
   </div>
+</div> 
+            
+  <div class="container">
 
   <div class="programs-nav">
-    <span>Arts & Humanities</span>
-    <span>Business</span>
-    <span>Computational Sciences</span>
-    <span>Natural Sciences</span>
-    <span>Social Sciences</span>
+    <span class="active" data-program="arts">Arts & Humanities</span>
+<span data-program="business">Business</span>
+<span data-program="cs">Computational Sciences</span>
+<span data-program="ns">Natural Sciences</span>
+<span data-program="ss">Social Sciences</span>
   </div>
 
-  <div class="info-card">
+  <div class="info-card active" id="arts">
     <h3>Arts & Humanities</h3>
     <p>
       Delve into history, ideas, and human relationships while developing
@@ -42,7 +46,7 @@
     </p>
   </div>
 
-  <div class="info-card">
+  <div class="info-card" id="business">
     <h3>Business</h3>
     <p>
       Transform ideas into ventures and understand global markets
@@ -50,34 +54,37 @@
     </p>
   </div>
 
-  <div class="info-card">
+  <div class="info-card" id="cs">
     <h3>Computational Sciences</h3>
     <p>
       Use data, modeling, and analytical tools to solve complex problems.
     </p>
   </div>
 
-  <div class="info-card">
+  <div class="info-card" id="ns">
     <h3>Natural Sciences</h3>
     <p>
       Build scientific knowledge and apply it to real-world innovation.
     </p>
   </div>
 
-  <div class="info-card">
+  <div class="info-card" id="ss">
     <h3>Social Sciences</h3>
     <p>
       Study human behavior and solve societal challenges using analytical thinking.
     </p>
-  </div>
+  </div>   <!-- last info-card -->
 
-  <div style="text-align:center; margin-top:50px;">
-    <button onclick="startQuiz()" class="start-btn">
-      Begin the Quiz
-    </button>
-  </div>
+<div style="text-align:center; margin-top:50px;">
+  <button onclick="startQuiz()" class="start-btn">
+    Begin the Quiz
+  </button>
+</div>
+
+</div> 
 
 </section>
+
         <section id="quiz" style="display:none;">
 
   <h2>Start Your Exploration</h2>
@@ -155,5 +162,23 @@ analysis, and real-world problem solving.
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/app.js"></script>
+    <script>
+const tabs = document.querySelectorAll(".programs-nav span");
+const cards = document.querySelectorAll(".info-card");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    cards.forEach(c => c.classList.remove("active"));
+
+    const selected = tab.getAttribute("data-program");
+    document.getElementById(selected).classList.add("active");
+
+  });
+});
+</script>
 </body>
 </html>
