@@ -129,23 +129,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/app.js"></script>
-    <script>
-const tabs = document.querySelectorAll(".programs-nav span");
-const cards = document.querySelectorAll(".info-card");
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-
-    cards.forEach(c => c.classList.remove("active"));
-
-    const selected = tab.getAttribute("data-program");
-    document.getElementById(selected).classList.add("active");
-
-  });
-});
-</script>
 </body>
 </html>
