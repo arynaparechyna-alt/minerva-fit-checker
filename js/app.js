@@ -97,20 +97,22 @@ function loadQuestion() {
 
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = "";
+  document.getElementById("nextBtn").disabled = true;
 
   q.answers.forEach((answer, index) => {
-    const btn = document.createElement("div");
+    const btn = document.createElement("button");
     btn.className = "answer-option";
     btn.innerText = answer;
 
     btn.onclick = () => {
-      document.querySelectorAll(".answer-option").forEach(el =>
-        el.classList.remove("selected")
-      );
-      btn.classList.add("selected");
-      selectedAnswer = index;
-    };
+  document.querySelectorAll(".answer-option").forEach(el =>
+    el.classList.remove("selected")
+  );
 
+  btn.classList.add("selected");
+  selectedAnswer = index;
+  document.getElementById("nextBtn").disabled = false;
+};
     answersDiv.appendChild(btn);
   });
 
@@ -118,7 +120,7 @@ function loadQuestion() {
     `Question ${currentQuestion + 1} of ${questions.length}`;
 
   document.getElementById("progress-fill").style.width =
-    `${((currentQuestion + 1) / questions.length) * 100}%`;
+  `${((currentQuestion + 1) / questions.length) * 100}%`;
 }
 
 function nextQuestion() {
