@@ -28,73 +28,104 @@ function init() {
 // ============================================================
 // Event handlers — add yours below
 // ============================================================
-function checkFit() {
-let discussion = document.getElementById("discussion").value;
-let reading = document.getElementById("reading").value;
-let travel = document.getElementById("travel").value;
+let currentQuestion = 0;
+let selectedAnswer = null;
 
-// SCORES
-let scores = {
-  collaboration: 0,
-  selfDirection: 0,
-  globalMindset: 0
-};
-
-// LOGIC
-scores.collaboration = (discussion === "yes") ? 5 : 2;
-scores.selfDirection = (reading === "yes") ? 5 : 2;
-scores.globalMindset = (travel === "yes") ? 5 : 2;
-
-// BEST MATCH
-let bestMajor = "";
-
-if (scores.collaboration >= 4 && scores.globalMindset >= 4) {
-  bestMajor = "🌍 Social Sciences (SS)";
-}
-else if (scores.selfDirection >= 4) {
-  bestMajor = "💻 Computer Science (CS)";
-}
-else {
-  bestMajor = "🌐 Interdisciplinary / Global Studies";
-}
-
-// DISPLAY TEXT
-document.getElementById("bestMatch").innerText =
-  "Best Academic Match: " + bestMajor;
-
-// CHART
-const ctx = document.getElementById('resultChart').getContext('2d');
-
-if (window.myChart) {
-  window.myChart.destroy();
-}
-
-window.myChart = new Chart(ctx, {
-  type: 'radar',
-  data: {
-    labels: ["Collaboration", "Self-Direction", "Global Mindset"],
-    datasets: [{
-      label: "Your Profile",
-      data: [
-        scores.collaboration,
-        scores.selfDirection,
-        scores.globalMindset
-      ],
-      backgroundColor: "rgba(255, 159, 64, 0.2)",
-      borderColor: "rgba(255, 159, 64, 1)",
-      pointBackgroundColor: ["#4CAF50", "#2196F3", "#9C27B0"],
-      borderWidth: 2
-    }]
+const questions = [
+  {
+    category: "INTELLECTUAL CURIOSITY",
+    question: "When you have free time to learn something new, what are you most likely to do?",
+    answers: [
+      "Dive deep into a completely new topic",
+      "Explore something related to my interests",
+      "Occasionally read or watch something interesting",
+      "Focus on hobbies or relaxing instead"
+    ]
   },
-  options: {
-    scales: {
-      r: {
-        min: 0,
-        max: 5
-      }
-    }
+  {
+    category: "GLOBAL MINDSET",
+    question: "You're in a new country with very different norms. What do you do?",
+    answers: [
+      "Actively try to understand and adapt",
+      "Observe first, then slowly engage",
+      "Stick to what feels familiar",
+      "Avoid unfamiliar situations"
+    ]
+  },
+  {
+    category: "ANALYTICAL THINKING",
+    question: "You’re faced with a complex problem with no clear answer.",
+    answers: [
+      "Break it down and test different approaches",
+      "Look for patterns or past examples",
+      "Ask others for guidance",
+      "Wait until more clarity appears"
+    ]
   }
-});
+];
+
+function startQuiz() {
+  document.getElementById("landing").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const q = questions[currentQuestion];
+
+  document.getElementById("category").innerText = q.category;
+  document.getElementById("question").innerText = q.question;
+
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  q.answers.forEach((answer, index) => {
+    const btn = document.createElement("div");
+    btn.className = "answer-option";
+    btn.innerText = answer;
+
+    btn.onclick = () => {
+      document.querySelectorAll(".answer-option").forEach(el =>
+        el.classList.remove("selected")
+      );
+      btn.classList.add("selected");
+      selectedAnswer = index;
+    };
+
+    answersDiv.appendChild(btn);
+  });
+
+  document.getElementById("progress-text").innerText =
+    `Question ${currentQuestion + 1} of ${questions.length}`;
+
+  document.getElementById("progress-fill").style.width =
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
+}
+
+function nextQuestion() {
+  if (selectedAnswer === null) {
+    alert("Please select an answer first");
+    return;
+  }
+
+  selectedAnswer = null;
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  document.getElementById("quiz").innerHTML = `
+    <div class="card">
+      <h2>You're a strong fit for Minerva 🚀</h2>
+      <p>Next step: we'll calculate your profile + chart.</p>
+    </div>
+  `;
+}
 // ============================================================
 // Rendering — add render functions below
 // ============================================================
@@ -107,4 +138,3 @@ window.myChart = new Chart(ctx, {
 // Boot
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', init);
