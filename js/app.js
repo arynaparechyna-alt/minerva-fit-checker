@@ -20,9 +20,12 @@ const state = {
 // ============================================================
 
 function init() {
-  // Runs once on page load.
-  // Set up event listeners, load initial data, render first view.
   console.log('[App] initialized');
+
+  const startBtn = document.getElementById("startBtn");
+  if (startBtn) {
+    startBtn.addEventListener("click", startQuiz);
+  }
 }
 
 // ============================================================
@@ -64,8 +67,10 @@ const questions = [
   }
 ];
 
-function startQuiz() {
-  document.getElementById("landing").style.display = "none";
+ function startQuiz() {
+  const landing = document.querySelector(".programs");
+  if (landing) landing.style.display = "none";
+
   document.getElementById("quiz").style.display = "block";
   loadQuestion();
 }
