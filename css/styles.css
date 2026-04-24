@@ -238,3 +238,11 @@ footer {
 .start-btn:hover {
   background: var(--mu-tangerine);
 }
+/* PROGRAM CARDS VISIBILITY */
+.info-card {
+  display: none;
+}
+
+.info-card.active {
+  display: block;
+}
