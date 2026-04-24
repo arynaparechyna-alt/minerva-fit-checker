@@ -22,19 +22,18 @@ const state = {
 function init() {
   console.log('[App] initialized');
 
-  // START BUTTON
+  // ✅ Start button
   const startBtn = document.getElementById("startBtn");
   if (startBtn) {
     startBtn.addEventListener("click", startQuiz);
   }
 
-  // TABS (THIS IS WHAT YOU LOST)
+  // ✅ Tabs 
   const tabs = document.querySelectorAll(".programs-nav span");
   const cards = document.querySelectorAll(".info-card");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-
       tabs.forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
 
