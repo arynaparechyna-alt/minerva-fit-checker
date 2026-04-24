@@ -22,12 +22,29 @@ const state = {
 function init() {
   console.log('[App] initialized');
 
+  // START BUTTON
   const startBtn = document.getElementById("startBtn");
   if (startBtn) {
     startBtn.addEventListener("click", startQuiz);
   }
-}
 
+  // TABS (THIS IS WHAT YOU LOST)
+  const tabs = document.querySelectorAll(".programs-nav span");
+  const cards = document.querySelectorAll(".info-card");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      cards.forEach(c => c.classList.remove("active"));
+
+      const selected = tab.getAttribute("data-program");
+      document.getElementById(selected).classList.add("active");
+    });
+  });
+}
 // ============================================================
 // Event handlers — add yours below
 // ============================================================
